@@ -11,7 +11,7 @@ public class Party{
         this.nPlayers = players.length;
         this.n = n;
     }
-    
+
     Player isWinner(){
         for (int nPlayer = 0; nPlayer < this.nPlayers; nPlayer++) {
             Player player = players[nPlayer];
@@ -42,9 +42,10 @@ public class Party{
         for (int nRound = 0; nRound < this.n; nRound++) {
             for (int nPlayer = 0; nPlayer < this.nPlayers; nPlayer++) {
                 Player player = players[nPlayer];
-                System.out.println("------------ Au tour de "+player.name+" ------------");
+                System.out.println("------------ Au tour de "+player.name+" ------------     Tour : "+nRound);
                 player.printScore();
                 for (int nDart = 0; nDart < 3; nDart++) {
+                    int multiple, score;
                     Player winner = isWinner();
                     if (winner != null){
                         winner.printChampion();
@@ -53,10 +54,19 @@ public class Party{
                     Scanner scan = new Scanner(System.in);
                     System.out.println("----- Fléchette n°"+(nDart+1)+" -----");
                     System.out.println("Score ?");
-                    int score = scan.nextInt();
+                    try{score = scan.nextInt();}
+                    catch(Exception e){
+                        nDart -= 1;
+                        continue;
+                    }
+                    if(score == 0) break;
                     scan.nextLine();
                     System.out.println("Multiple ?");
-                    int multiple = scan.nextInt();
+                    try{multiple = scan.nextInt();}
+                    catch(Exception e){
+                        nDart -= 1;
+                        continue;
+                    }
                     System.out.println();
                     player.incResult(score, multiple);
                 }
