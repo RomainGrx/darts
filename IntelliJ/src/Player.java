@@ -31,7 +31,7 @@ public class Player{
         System.out.println(" --------------------------------------");
     }
 
-    private boolean isCorrectScore(int score){
+    public boolean isCorrectScore(int score){
 
         for (int i = 0; i < correctScore.length; i++) {
             if(correctScore[i] == score) return true;
@@ -39,18 +39,5 @@ public class Player{
         return false;
     }
 
-    public void incResult(int score, int multiple){
-        if(isCorrectScore(score)){
-            int index = score - 15;
-            for (int i = 0; i < multiple; i++) {
-                if (this.score[index] == 3){
-                    this.points += score;
-                } else {
-                    this.score[index] ++;
-                }
-            }
-        }
-
-    }
 
 }

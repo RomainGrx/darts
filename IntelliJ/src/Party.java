@@ -2,11 +2,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Party{
+    private boolean[] doneScores;
     public Player[] players;
     public int nPlayers;
     int n;
 
     Party(Player[] players, int n){
+        doneScores = new boolean[7];
         this.players = players;
         this.nPlayers = players.length;
         this.n = n;
@@ -38,6 +40,35 @@ public class Party{
         return winner;
     }
 
+    void computeDoneScores(int score){
+        if (players[0].isCorrectScore(score)) {
+            int index = score-15;
+            for (int nPlayer = 0; nPlayer < this.nPlayers; nPlayer++) {
+                if (players[nPlayer].score[index] != 3) return;
+            }
+            doneScores[index] = true;
+        }
+    }
+
+    public void incResult(Player player, int score, int multiple){
+        if(player.isCorrectScore(score)){
+            int index = score - 15;
+                boolean allDone = false;
+                for (int i = 0; i < multiple; i++) {
+                    if (player.score[index] == 3){
+                        if(!this.doneScores[index]) {
+                            player.points += score;
+                        }
+                    } else {
+                        player.score[index] ++;
+                    }
+                    computeDoneScores(score);
+                }
+        }
+
+    }
+
+
     void play(){
         for (int nRound = 0; nRound < this.n; nRound++) {
             for (int nPlayer = 0; nPlayer < this.nPlayers; nPlayer++) {
@@ -68,7 +99,8 @@ public class Party{
                         continue;
                     }
                     System.out.println();
-                    player.incResult(score, multiple);
+                    incResult(player, score, multiple);
+
                 }
                 System.out.println();
             }
