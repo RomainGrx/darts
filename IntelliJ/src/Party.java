@@ -70,7 +70,7 @@ public class Party{
 
 
     void play(){
-        for (int nRound = 0; nRound < this.n; nRound++) {
+        for (int nRound = 1; nRound <= this.n; nRound++) {
             for (int nPlayer = 0; nPlayer < this.nPlayers; nPlayer++) {
                 Player player = players[nPlayer];
                 System.out.println("------------ Au tour de "+player.name+" ------------     Tour : "+nRound);
