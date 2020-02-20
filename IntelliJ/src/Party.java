@@ -22,7 +22,7 @@ public class Party{
             for (nScore = 0; nScore < player.score.length && ok==true; nScore++) {
                 if(player.score[nScore] != 3) ok = false;
             }
-            if (ok == true) return player;
+            if (ok == true && player.points >= whoWin().points) return player;
         }
         return null;
     }
