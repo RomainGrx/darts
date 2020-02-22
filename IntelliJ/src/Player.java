@@ -5,11 +5,13 @@ public class Player{
     public String name;
     public int score[];
     public int points;
+    public boolean TURN;
 
-    Player(String name){
+    Player(String name, boolean TURN){
         this.name = name;
         this.score = new int[7];
         this.points = 0;
+        this.TURN = TURN;
     }
 
     void printChampion(){

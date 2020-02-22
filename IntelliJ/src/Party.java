@@ -70,9 +70,13 @@ public class Party{
 
 
     void play(){
+        Frame frame = new Frame(this.players);
+        frame.pan.n = this.n;
         for (int nRound = 1; nRound <= this.n; nRound++) {
+            frame.pan.nRound = nRound;
             for (int nPlayer = 0; nPlayer < this.nPlayers; nPlayer++) {
                 Player player = players[nPlayer];
+                player.TURN = true;
                 System.out.println("------------ Au tour de "+player.name+" ------------     Tour : "+nRound);
                 player.printScore();
                 for (int nDart = 0; nDart < 3; nDart++) {
@@ -100,8 +104,10 @@ public class Party{
                     }
                     System.out.println();
                     incResult(player, score, multiple);
-
+                    frame.refresh(this.players);
                 }
+                frame.refresh(this.players);
+                player.TURN = false;
                 System.out.println();
             }
         }

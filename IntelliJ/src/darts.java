@@ -13,7 +13,7 @@ public class darts {
         for (int i = 0; i < nPlayers; i++) {
             System.out.println("Nom du joueur "+(i+1)+" ? ");
             String name = scan.next();
-            players[i] = new Player(name);
+            players[i] = new Player(name, false);
             scan.nextLine();
         }
         Party party = new Party(players, n);
